@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  database:
+    container_name: database
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: appdb
+    networks:
+      - backend_network
+
+  backend:
+    container_name: backend
+    build: ./backend
+    depends_on:
+      - database
+    networks:
+      - frontend_network
+      - backend_network
+
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    depends_on:
+      - backend
+    networks:
+      - frontend_network
+
+networks:
+  frontend_network:
+  backend_network:

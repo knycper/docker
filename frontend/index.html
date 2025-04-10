@@ -1,0 +1,12 @@
+<html>
+
+<body>
+    <h1>Frontend działa!</h1>
+    <script>
+        fetch('http://backend:3000/')
+            .then(res => res.text())
+            .then(text => document.body.innerHTML += '<p>' + text + '</p>');
+    </script>
+</body>
+
+</html>
